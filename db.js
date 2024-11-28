@@ -1,27 +1,12 @@
-import pkg from "pg";
+import mariadb from "mariadb";
 import dotenv from "dotenv";
-
 dotenv.config();
 
-const { Pool } = pkg; // Ambil Pool dari pg
 const { HOST, PORT, USER, PASSWORD, DATABASE } = process.env;
-
-// Buat koneksi ke PostgreSQL
-export const connection = new Pool({
+export const connection = await mariadb.createConnection({
   host: HOST,
-  port: Number(PORT),
+  port: PORT,
   user: USER,
   password: PASSWORD,
   database: DATABASE,
 });
-
-// Contoh fungsi untuk memeriksa koneksi
-(async () => {
-  try {
-    const client = await connection.connect(); // Gunakan koneksi
-    console.log("Connected to PostgreSQL successfully!");
-    client.release(); // Lepaskan koneksi setelah digunakan
-  } catch (err) {
-    console.error("Failed to connect to PostgreSQL:", err);
-  }
-})();

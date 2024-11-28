@@ -10,7 +10,11 @@ const app = express();
 app.use(express.json());
 const __dirname = path.resolve();
 
-app.use(cors());
+app.use(cors({
+  origin: ['https://front-end-ten-sand.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Sesuaikan dengan metode yang Anda izinkan
+  credentials: true,
+}));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -40,8 +44,6 @@ app.get("/api/get-users",async (req,res)=>{
   const result = await connection.query("SELECT * FROM users");
   res.json(result);
 });
-
-
 app.post("/api/login", async (req, res) => {
   const result = await connection.query("SELECT * FROM users WHERE username = ?", [
     req.body.username,
