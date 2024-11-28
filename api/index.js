@@ -10,10 +10,7 @@ const app = express();
 app.use(express.json());
 const __dirname = path.resolve();
 
-app.use(cors({
-  origin: process.env.FRONTEND_URL,
-  credentials: true
-}));
+app.use(cors());
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
