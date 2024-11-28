@@ -40,6 +40,8 @@ app.get("/api/get-users",async (req,res)=>{
   const result = await connection.query("SELECT * FROM users");
   res.json(result);
 });
+
+
 app.post("/api/login", async (req, res) => {
   const result = await connection.query("SELECT * FROM users WHERE username = ?", [
     req.body.username,
