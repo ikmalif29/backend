@@ -11,7 +11,8 @@ app.use(express.json());
 const __dirname = path.resolve();
 
 app.use(cors({
-  origin: ['https://front-end-ten-sand.vercel.app'],
+  origin: ['https://front-end-ten-sand.vercel.app','http://localhost:5173'],
+  // origin: ['http://localhost:5173'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Sesuaikan dengan metode yang Anda izinkan
   credentials: true,
 }));
